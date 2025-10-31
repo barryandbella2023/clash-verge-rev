@@ -1,5 +1,5 @@
 import { ContentCopyRounded } from "@mui/icons-material";
-import { Typography } from "@mui/material";
+ 
 import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -15,7 +15,7 @@ import {
 } from "@/services/cmds";
 import { showNotice } from "@/services/noticeService";
 import { checkUpdateSafe as checkUpdate } from "@/services/update";
-import { version } from "@root/package.json";
+ 
 
 import { BackupViewer } from "./mods/backup-viewer";
 import { ConfigViewer } from "./mods/config-viewer";
@@ -61,11 +61,7 @@ const SettingVergeAdvanced = ({ onError: _ }: Props) => {
     showNotice("success", t("Copy Success"), 1000);
   }, [t]);
 
-  const copyVersion = useCallback(() => {
-    navigator.clipboard.writeText(`v${version}`).then(() => {
-      showNotice("success", t("Version copied to clipboard"), 1000);
-    });
-  }, [t]);
+ 
 
   return (
     <SettingList title={t("Verge Advanced Setting")}>
@@ -141,18 +137,7 @@ const SettingVergeAdvanced = ({ onError: _ }: Props) => {
         }
       ></SettingItem>
 
-      <SettingItem
-        label={t("Verge Version")}
-        extra={
-          <TooltipIcon
-            icon={ContentCopyRounded}
-            onClick={copyVersion}
-            title={t("Copy Version")}
-          />
-        }
-      >
-        <Typography sx={{ py: "7px", pr: 1 }}>v{version}</Typography>
-      </SettingItem>
+      
     </SettingList>
   );
 };
